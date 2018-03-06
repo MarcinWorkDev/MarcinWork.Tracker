@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MarcinWorkTracker.Logic.Models.Tracking>
+
+@{
+    ViewData["Title"] = "TrackList";
+}
+
+<h2>TrackList</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastCheckTimestamp)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastCheckResult)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Finished)
+                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProviderCompany)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Shipment)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastCheckTimestamp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastCheckResult)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Finished)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProviderCompany.ProviderCompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Shipment.OrderName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TrackingNumber">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TrackingNumber">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TrackingNumber">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

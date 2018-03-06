@@ -1,0 +1,65 @@
+﻿@model IEnumerable<MarcinWorkTracker.Logic.Models.TrackingStatus>
+
+@{
+    ViewData["Title"] = "TrackList";
+}
+
+<h2>TrackList</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.tracking.LastCheckTimestamp)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tracking.LastCheckResult)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tracking.Finished)
+                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tracking.ProviderCompany)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tracking.Shipment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.jsonStatus)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.tracking.LastCheckTimestamp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tracking.LastCheckResult)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tracking.Finished)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tracking.ProviderCompany.ProviderCompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tracking.Shipment.OrderName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.jsonStatus)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.tracking.TrackingNumber">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.tracking.TrackingNumber">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.tracking.TrackingNumber">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
